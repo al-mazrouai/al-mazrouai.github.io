@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<a id="openWin"  href="/popedwin.html" target="_blank"> open window </a>
+<br>
+<a id="closeWin" href > close window </a>
+<br>
+<a id="openCloseWin"  href="/popedwin.html" target="_blank"> open & close window 0.5s </a>
+
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script>
+var winRef = null
+$("#openWin").click(function(e){
+    e.preventDefault()
+    if( !winRef || winRef.closed){
+        winRef = window.open("/popedwin.html")
+    }
+})
+
+$("#closeWin").click(function(e){
+    e.preventDefault()
+    if( winRef && !winRef.closed ){
+        winRef.close()
+        winRef = null
+    }
+})
+
+$("#openCloseWin").click(function(e){
+    e.preventDefault()
+    if( !winRef || winRef.closed){
+        winRef = window.open("/popedwin.html")
+    }
+
+    window.setTimeout(function() {
+        if( winRef && !winRef.closed ){
+            winRef.close()
+            winRef = null
+        }
+    }, 5000);
+})
+</script>
